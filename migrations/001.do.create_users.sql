@@ -5,5 +5,5 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     email TEXT NOT NULL,
     zip INTEGER NOT NULL,
-    admin_status TEXT NOT NULL
+    admin_status BOOLEAN NOT NULL
 );
