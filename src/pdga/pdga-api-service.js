@@ -1,6 +1,8 @@
+const config = require('../config');
+
 const PdgaService = {
     login() {
-        return fetch(`${config.proxyUrl}https://api.pdga.com/services/json/user/login`, {
+        return fetch(`https://api.pdga.com/services/json/user/login`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -15,7 +17,7 @@ const PdgaService = {
     },
 
     logout() {
-        return fetch(`${config.proxyUrl}https://api.pdga.com/services/json/user/logout`, {
+        return fetch(`https://api.pdga.com/services/json/user/logout`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -11,7 +11,17 @@ pdgaRouter
     .get(requireAuth, async (req, res, next) => {
         try {
             const sessionInfo = await PdgaApiService.login();
+            if (!sessionInfo) {
+                return res.status(404).json({
+                    error: { message: 'Login Failed' },
+                });
+            }
+            res.status(200).json(sessionInfo)
+        } catch(error) {
+            next(error)
         }
-    })
+    });
+
+pdgaRouter
 
 module.exports = threadsRouter;
