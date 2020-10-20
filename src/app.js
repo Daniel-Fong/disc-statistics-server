@@ -5,8 +5,9 @@ const morgan = require('morgan');
 const helmet=require('helmet');
 const { NODE_ENV } = require('./config');
 const authRouter = require('./auth/auth-router');
+const pdgaRouter = require('./pdga/pdga-api-router');
 
-const app= express();
+const app = express();
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
@@ -16,6 +17,7 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use('/api/auth', authRouter);
+app.use('/api/pdga', pdgaRouter);
 
 app.get('/', (req, res) => {
      res
