@@ -23,5 +23,18 @@ pdgaRouter
     });
 
 pdgaRouter
+    .route('/pdgaLogout')
+    .get(requireAuth, async (req, res, next) => {
+        try {
+            const logoutInfo = await PdgaApiService.logout();
+            if (!logoutInfo) {
+                return res.status(404).json({
+                    error: { message: 'Logout Failed' },
+                });
+            }
+        } catch(error) {
+            next(error)
+        }
+    });
 
-module.exports = threadsRouter;
+module.exports = pdgaRouter;
