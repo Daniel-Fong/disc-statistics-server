@@ -29,7 +29,18 @@ const PdgaService = {
         }).then((res) =>
             !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
         );
-    }
+    },
+
+    getCoursesByZip(zip) {
+        return fetch(`https://api.pdga.com/services/json/course?postal_code=${zip}`, {
+            method: 'GET',
+            header: {
+                'content-type': 'application/json'
+            },
+        }).then((res) =>
+        !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+        );
+    },
 }
 
 module.exports = PdgaService;
