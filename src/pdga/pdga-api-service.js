@@ -41,6 +41,18 @@ const PdgaService = {
         !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
         );
     },
+
+    getCoursesByName(name) {
+        return fetch(`https://api.pdga.com/services/json/course?course_name=${name}`, {
+            method: 'GET',
+            header: {
+                'content-type': 'application/json'
+            },
+        }).then((res) =>
+        !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+        );
+    },
+
 }
 
 module.exports = PdgaService;
