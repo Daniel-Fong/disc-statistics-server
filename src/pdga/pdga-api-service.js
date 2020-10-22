@@ -53,6 +53,17 @@ const PdgaService = {
         );
     },
 
+    getCoursesById(id) {
+        return fetch(`https://api.pdga.com/services/json/course?course_id=${id}`, {
+            method: 'GET',
+            header: {
+                'content-type': 'application/json'
+            },
+        }).then((res) =>
+        !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+        );
+    },
+
 }
 
 module.exports = PdgaService;
