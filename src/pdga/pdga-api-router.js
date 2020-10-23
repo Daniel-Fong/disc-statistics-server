@@ -7,7 +7,7 @@ const pdgaRouter = express.Router();
 const jsonBodyParser = express.json();
 
 pdgaRouter
-    .route('/pdgaLogin')
+    .route('/login')
     .get(requireAuth, async (req, res, next) => {
         try {
             const sessionInfo = await PdgaApiService.login();
@@ -23,7 +23,7 @@ pdgaRouter
     });
 
 pdgaRouter
-    .route('/pdgaLogout')
+    .route('/logout')
     .get(requireAuth, async (req, res, next) => {
         try {
             const logoutInfo = await PdgaApiService.logout();
