@@ -28,7 +28,7 @@ pdgaRouter
     .get(requireAuth, async (req, res, next) => {
         try {
             console.log('logging out');
-            const logoutInfo = await PdgaApiService.logout();
+            const logoutInfo = await PdgaApiService.logout(req.body.token, req.body.sessId);
             if (!logoutInfo) {
                 return res.status(404).json({
                     error: { message: 'Logout Failed' },
