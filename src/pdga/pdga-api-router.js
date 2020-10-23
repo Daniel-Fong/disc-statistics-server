@@ -10,6 +10,7 @@ pdgaRouter
     .route('/login')
     .get(requireAuth, async (req, res, next) => {
         try {
+            console.log('loggin in');
             const sessionInfo = await PdgaApiService.login();
             if (!sessionInfo) {
                 return res.status(404).json({
@@ -26,6 +27,7 @@ pdgaRouter
     .route('/logout')
     .get(requireAuth, async (req, res, next) => {
         try {
+            console.log('logging out');
             const logoutInfo = await PdgaApiService.logout();
             if (!logoutInfo) {
                 return res.status(404).json({

@@ -5,8 +5,7 @@ const PdgaService = {
         return fetch(`https://api.pdga.com/services/json/user/login`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
-                "X-Requested-With": "XMLHttpRequest"
+                'content-type': 'application/json'
             },
             body: {
                 "username":"Daniel Fong 146610","password":"iWXjpfDQt5!deE@"
@@ -16,16 +15,18 @@ const PdgaService = {
         );
     },
 
-    logout() {
+    logout(token, sessId) {
         return fetch(`https://api.pdga.com/services/json/user/logout`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                "X-Requested-With": "XMLHttpRequest"
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-token': `${token}`,
+                'Cookie': `${sessId}`
             },
-            body: {
-                "username":"Daniel Fong 146610","password":"iWXjpfDQt5!deE@"
-            },
+            // body: {
+            //     "username":"Daniel Fong 146610","password":"iWXjpfDQt5!deE@"
+            // },
         }).then((res) =>
             !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
         );
