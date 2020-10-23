@@ -5,5 +5,7 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     email TEXT NOT NULL,
     zip INTEGER NOT NULL,
+    img_src TEXT,
+    img_alt TEXT,
     admin_status BOOLEAN NOT NULL
 );
