@@ -6,5 +6,6 @@ CREATE TABLE users (
     email TEXT NOT NULL,
     img_src TEXT,
     img_alt TEXT,
+    hand INTEGER NOT NULL,
     admin_status BOOLEAN NOT NULL
 );

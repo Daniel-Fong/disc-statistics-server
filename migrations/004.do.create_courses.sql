@@ -10,6 +10,7 @@ CREATE TABLE courses (
     course_address TEXT NOT NULL,
     zip INTEGER,
     course_description TEXT,
+    map TEXT,
     date_modified TIMESTAMPTZ DEFAULT now() NOT NULL,
     notes TEXT
 );
