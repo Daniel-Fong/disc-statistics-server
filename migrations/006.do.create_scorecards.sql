@@ -3,10 +3,10 @@ CREATE TABLE scorecards (
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
     course_name TEXT NOT NULL,
     course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE NOT NULL,
-    layout_id INTEGER REFERENCES layout(id),
+    layout_id INTEGER REFERENCES layouts(id),
     holes INTEGER NOT NULL,
     date_modified TIMESTAMPTZ DEFAULT now() NOT NULL,
     notes TEXT,
-    par INTEGER NOT NULL,
+    par INTEGER REFERENCES layouts(par) NOT NULL,
     score INTEGER
 );
