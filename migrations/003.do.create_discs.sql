@@ -3,6 +3,7 @@ CREATE TABLE discs (
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
     disc_name TEXT NOT NULL,
     disc_type TEXT NOT NULL,
+    disc_plastic TEXT NOT NULL,
     stability TEXT NOT NULL,
     color TEXT NOT NULL,
     speed INTEGER,
