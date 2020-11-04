@@ -15,6 +15,7 @@ CREATE TABLE discs (
     fade INTEGER,
     photo_url TEXT,
     favorite BOOLEAN NOT NULL,
+    thrown INTEGER NOT NULL,
     date_modified TIMESTAMPTZ DEFAULT now() NOT NULL,
     notes TEXT
 );
