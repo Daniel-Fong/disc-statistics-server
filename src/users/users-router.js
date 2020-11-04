@@ -30,7 +30,7 @@ usersRouter
 
   usersRouter
   .post('/', jsonBodyParser, async (req, res, next) => {
-    const { password, username, name, email, zip, img_src, img_alt } = req.body
+    const { password, username, name, email, zip, img_src, img_alt, hand } = req.body
     let usernames = await UsersService.getAllUsersUsernames(req.app.get('db'))
     usernames.forEach(user_name => {
       if (user_name === username) {
@@ -83,6 +83,7 @@ usersRouter
         admin_status: false,
         img_src,
         img_alt,
+        hand
       }
 
       const user = await UsersService.insertUser(
