@@ -7,6 +7,6 @@ CREATE TABLE scorecards (
     holes INTEGER NOT NULL,
     date_modified TIMESTAMPTZ DEFAULT now() NOT NULL,
     notes TEXT,
-    par INTEGER REFERENCES layouts(par) NOT NULL,
+    par INTEGER,
     score INTEGER
 );
