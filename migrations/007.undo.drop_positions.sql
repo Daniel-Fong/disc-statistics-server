@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS holes;
+DROP TABLE IF EXISTS positions;
