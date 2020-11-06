@@ -4,8 +4,9 @@ CREATE TABLE users (
     user_name TEXT NOT NULL,
     password TEXT NOT NULL,
     email TEXT NOT NULL,
+    zip INTEGER,
     img_src TEXT,
     img_alt TEXT,
-    hand INTEGER NOT NULL,
+    hand TEXT NOT NULL,
     admin_status BOOLEAN NOT NULL
 );
