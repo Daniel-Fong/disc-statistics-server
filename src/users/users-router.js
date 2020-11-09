@@ -31,7 +31,6 @@ usersRouter
   usersRouter
   .post('/', jsonBodyParser, async (req, res, next) => {
     const { password, username, name, email, zip, img_src, img_alt, hand } = req.body
-    console.log(password, username, name, email, zip, img_src, img_alt, hand)
     let usernames = await UsersService.getAllUsersUsernames(req.app.get('db'))
     usernames.forEach(user_name => {
       if (user_name === username) {
