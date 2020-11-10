@@ -93,7 +93,7 @@ discsRouter
             res
               .status(201)
               .location(path.posix.join(req.originalUrl, `${post.id}`))
-              .json(serializePost(post));
+              .json(serializeDisc(disc));
           } catch (error) {
             next(error)
           }
