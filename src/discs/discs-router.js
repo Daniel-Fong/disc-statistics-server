@@ -80,6 +80,11 @@ discsRouter
               .status(400)
               .json({ error: { message: 'Disc mold must not exceed 20 characters' } });
           }
+          if (notes.length > 500) {
+            return res
+              .status(400)
+              .json({ error: { message: 'Disc mold must not exceed 500 characters' } });
+          }
           try {
             const disc = await DiscsService.insertDisc(
               req.app.get('db'), 
