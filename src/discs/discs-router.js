@@ -30,6 +30,16 @@ const serializeDisc = disc => ({
 
 discsRouter
     .route('/')
+
+    .get(requireAuth, async (req, res, next) => {
+        try {
+            const discs = await DiscsService.getUserDiscs(req.app.get('db'), req.user.id);
+            res.status(200).json(discs.map(serializeDisc));
+        }   catch(error) {
+            next(error)
+        }
+    })
+
     .post(requireAuth, jsonBodyParser, async (req, res, next) => {
         const {name, brand, mold, type, plastic, stability, primary_color, secondary_color, speed, glide, turn, fade, notes} = req.body.disc;
         const user_id = req.user.id;
