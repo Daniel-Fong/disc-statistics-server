@@ -8,31 +8,31 @@ const discsRouter = express.Router();
 const jsonBodyParser = express.json();
 
 const serializeDisc = disc => ({
-    id,
-    user_id,
+    id: disc.id,
+    user_id: disc.user_id,
     name: xss(disc.disc_name),
     brand: xss(disc.brand),
     mold: xss(disc.mold),
     type: xss(disc.disc_type),
     plastic: xss(disc.plastic),
-    primaryColor,
-    secondaryColor,
-    speed,
-    glide,
-    turn,
-    fade,
+    primary_color: disc.primary_color,
+    secondary_color: disc.secondary_color,
+    speed: disc.speed,
+    glide: disc.glide,
+    turn: disc.glide,
+    fade: disc.fade,
     photo_url: xss(disc.photo_url),
-    favorite,
-    thrown,
-    date_modified,
+    favorite: disc.favorite,
+    thrown: disc.thrown,
+    date_modified: disc.date_modified,
     notes: xss(disc.notes)
 });
 
 discsRouter
     .route('/')
-    .post(requireAuth, async (req, res, next) => {
-        const {name, brand, mold, type, plastic, stability, primaryColor, secondaryColor, speed, glide, turn, fade, notes} = req.body;
-        const user_id = req.user_id;
+    .post(requireAuth, jsonBodyParser, async (req, res, next) => {
+        const {name, brand, mold, type, plastic, stability, primary_color, secondary_color, speed, glide, turn, fade, notes} = req.body.disc;
+        const user_id = req.user.id;
         const newDisc = {
             user_id,
             name,
@@ -41,29 +41,35 @@ discsRouter
             type,
             plastic,
             stability,
-            primaryColor,
-            secondaryColor,
+            primary_color,
+            secondary_color,
             speed,
             glide,
             turn,
             fade,
-            notes
+            notes,
+            thrown: 0
         };
         if (!name) {
+            console.log(name)
             return res.status(400).json({ error: { message: 'name required' } });
           }
           if (!brand) {
+            console.log(brand)
             return res.status(400).json({ error: { message: 'brand required' } });
           }
           if (!mold) {
+            console.log(mold)
             return res
               .status(400).json({ error: { message: 'mold required' } });
           }
           if (!plastic) {
+            console.log(plastic)
             return res
               .status(400).json({ error: { message: 'plastic required' } });
           }
           if (name.length > 30) {
+            console.log(name, '2')
             return res
               .status(400)
               .json({
@@ -71,16 +77,19 @@ discsRouter
               });
           }
           if (brand.length > 20) {
+            console.log(brand, '2')
             return res
               .status(400)
               .json({ error: { message: 'Disc brand must not exceed 20 characters' } });
           }
           if (mold.length > 20) {
+            console.log(mold, '2')
             return res
               .status(400)
               .json({ error: { message: 'Disc mold must not exceed 20 characters' } });
           }
           if (notes.length > 500) {
+            console.log(notes, '2')
             return res
               .status(400)
               .json({ error: { message: 'Disc mold must not exceed 500 characters' } });
@@ -90,9 +99,10 @@ discsRouter
               req.app.get('db'), 
               newDisc
             );
+            console.log(disc)
             res
               .status(201)
-              .location(path.posix.join(req.originalUrl, `${post.id}`))
+              .location(path.posix.join(req.originalUrl, `${disc.id}`))
               .json(serializeDisc(disc));
           } catch (error) {
             next(error)
