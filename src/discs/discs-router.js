@@ -30,7 +30,6 @@ const serializeDisc = disc => ({
 
 discsRouter
     .route('/')
-
     .get(requireAuth, async (req, res, next) => {
         try {
             const discs = await DiscsService.getUserDiscs(req.app.get('db'), req.user.id);
