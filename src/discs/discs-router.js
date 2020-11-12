@@ -10,7 +10,7 @@ const jsonBodyParser = express.json();
 const serializeDisc = disc => ({
     id: disc.id,
     user_id: disc.user_id,
-    name: xss(disc.disc_name),
+    name: xss(disc.name),
     brand: xss(disc.brand),
     mold: xss(disc.mold),
     type: xss(disc.disc_type),
