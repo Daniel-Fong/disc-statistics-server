@@ -13,7 +13,7 @@ const serializeDisc = disc => ({
     name: xss(disc.name),
     brand: xss(disc.brand),
     mold: xss(disc.mold),
-    type: xss(disc.disc_type),
+    type: xss(disc.type),
     plastic: xss(disc.plastic),
     primary_color: disc.primary_color,
     secondary_color: disc.secondary_color,
